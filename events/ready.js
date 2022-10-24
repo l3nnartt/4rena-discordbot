@@ -1,8 +1,10 @@
+const { ActivityType } = require("discord-api-types/v10");
+
 module.exports = {
 	name: 'ready',
 	once: true,
 	execute(client) {
-		//Bot gestartet
+		// Bot started
 		console.log(' ')
 		console.log('┌──────────────────────────────────── Login ─────────────────────────────────────────┐')
 		console.log(`│ > Eingeloggt als ${client.user.tag}!                                         │`);
@@ -31,18 +33,9 @@ module.exports = {
 		console.log('└────────────────────────────────────────────────────────────────────────────────────┘    ')
 		console.log(' ')
 
-		//Rich Presence
+		// Rich Presence
 		setInterval(() => {
-			const activities = [
-				`4rena mit ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} Mitgliedern`
-			];
-			let activity = activities[Math.floor(Math.random() * activities.length)];
-			client.user.setActivity(
-				activity,
-				{
-					type: "PLAYING"
-				}
-			);
-		}, 15000);
+			client.user.setActivity(`mit ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} Mitgliedern`, { type: ActivityType.Playing });
+		}, 60000);
 	},
 };
