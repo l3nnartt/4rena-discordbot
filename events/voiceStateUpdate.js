@@ -3,9 +3,9 @@ module.exports = {
     async execute(oldState, newState) {
         if (newState.channel !== null && newState.channel.parent.id === '833501385454518272') {
 
-            const channelName = newState.channel.name;
-            const joined = !!newState.channelId
-            const channelId = joined ? newState.channelId : oldState.channelId
+            let channelName = newState.channel.name;
+            let joined = !!newState.channelId
+            let channelId = joined ? newState.channelId : oldState.channelId
             let channel = newState.guild.channels.cache.get(channelId)
 
             const {
@@ -16,7 +16,8 @@ module.exports = {
                 rawPosition,
             } = channel
 
-            newState.guild.channels.create(channelName, {
+            newState.guild.channels.create({
+                name: channelName,
                 type,
                 bitrate,
                 userLimit,
@@ -27,6 +28,7 @@ module.exports = {
                 newState.member.voice.setChannel(channel)
             })
         }
+
         if (oldState.channel !== null && oldState.channel.members.size === 0 && oldState.channel.parent.id === '833689325006094346') return oldState.channel.delete();
     },
 };

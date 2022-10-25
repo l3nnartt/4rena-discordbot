@@ -1,0 +1,8 @@
+version: "3"
+services:
+  4rena:
+    container_name: "4rena-Bot"
+    image: "ghcr.io/l3nnartt/4rena-discordbot:main"
+    restart: always
+    volumes:
+      - .\config.json:/bot/config.json

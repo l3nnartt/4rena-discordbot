@@ -1,12 +1,11 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, Colors} = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('ranks')
         .setDescription('Übersicht aller 4rena-Ränge auf dem Discord'),
     async execute(interaction, client) {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${client.user.username} • 4rena Ränge`)
             .addFields(
                 { name: 'Camper', value: `64 Punkte <@&842058723862380575>`},
@@ -22,7 +21,7 @@ module.exports = {
                 { name: 'Killaura', value: `65536 Punkte <@&848506456969445377>`})
             .setTimestamp(interaction.createdAt)
             .setFooter({ text: `${client.user.username}`, iconURL: client.user.displayAvatarURL() })
-            .setColor("#4680FC");
+            .setColor(Colors.Blurple);
         interaction.reply({embeds: [embed]});
     },
 };
